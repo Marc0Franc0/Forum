@@ -1,21 +1,14 @@
-package com.app.Forum.model;
+package com.app.Forum.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+
 import java.util.Date;
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+
 @Getter
-@Entity
-@Table(name = "Topic")
-public class Topic {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Builder
+public class TopicDTO {
     private String title;
     private String message;
     private Date creationDate;
