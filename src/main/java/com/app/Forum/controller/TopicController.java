@@ -1,5 +1,6 @@
 package com.app.Forum.controller;
 
+import com.app.Forum.dto.TopicDTO;
 import com.app.Forum.model.Topic;
 import com.app.Forum.service.TopicService;
 import com.app.Forum.service.crud.CrudService;
@@ -7,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 //Clase la cual contiene todos los endpoint correspondientes a la entidad Topic
@@ -26,8 +25,9 @@ public class TopicController {
     public void get(){
 
     }
-    public void create(){
-
+    @PostMapping("")
+    public Topic create(@RequestBody TopicDTO topicDTO){
+        return (Topic) topicService.create(topicDTO);
     }
     public void updateById(){
 

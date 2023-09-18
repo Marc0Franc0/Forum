@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import java.util.Date;
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -18,7 +19,7 @@ public class Topic {
     private Long id;
     private String title;
     private String message;
-    private Date creationDate;
+    private LocalDate creationDate;
     private Boolean status;
     private String author;
     private String curso;

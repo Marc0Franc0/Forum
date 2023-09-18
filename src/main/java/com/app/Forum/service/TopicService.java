@@ -7,6 +7,7 @@ import com.app.Forum.service.crud.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +35,7 @@ public class TopicService implements CrudService {
                             .title(topic.getTitle())
                             .curso(topic.getCurso())
                             .author(topic.getAuthor())
-                            .creationDate(topic.getCreationDate())
+                            .creationDate(String.valueOf(topic.getCreationDate()))
                             .message(topic.getMessage())
                             .status(topic.getStatus())
                             .build());
@@ -49,7 +50,17 @@ public class TopicService implements CrudService {
 
     @Override
     public Object create(Object object) {
-        return null;
+        TopicDTO topic = (TopicDTO) object;
+
+        return topicRepository.save(
+                Topic.builder()
+                        .author(topic.getAuthor())
+                        .title(topic.getTitle())
+                        .message(topic.getMessage())
+                        .status(topic.isStatus())
+                        .curso(topic.getCurso())
+                        .creationDate(LocalDate.parse(topic.getCreationDate()))
+                        .build());
     }
 
     @Override
