@@ -45,7 +45,7 @@ public class TopicService implements CrudService {
 
     @Override
     public Optional getById(Long id) {
-        return Optional.empty();
+        return topicRepository.findById(id);
     }
 
     @Override
@@ -64,12 +64,28 @@ public class TopicService implements CrudService {
     }
 
     @Override
-    public Optional updateById(Long id, Object object) {
-        return Optional.empty();
+    public Object updateById(Long id, Object object) {
+        TopicDTO topic = (TopicDTO) object;
+        return topicRepository.save(
+                Topic.builder()
+                        //Se le define el id para el que se guarde en la base de datos
+                        //se el cual se desea actualizar
+                        .id(id)
+                        .author(topic.getAuthor())
+                        .title(topic.getTitle())
+                        .message(topic.getMessage())
+                        .status(topic.isStatus())
+                        .curso(topic.getCurso())
+                        .creationDate(LocalDate.parse(topic.getCreationDate()))
+                        .build());
     }
 
     @Override
-    public void removeById(Long id) {
-
+    public Object removeById(Long id) {
+        //Obtención de topic el cual va a eliminarse
+        Optional<Topic> topicDeleted = topicRepository.findById(id);
+        //Eliminación de datos del topico utilizando su id
+        topicRepository.deleteById(id);
+        return topicDeleted;
     }
 }

@@ -12,6 +12,6 @@ public interface CrudService {
     public List getAll();
     public Optional getById(Long id);
     public Object create(Object object);
-    public Optional updateById(Long id, Object object);
-    public void removeById (Long id);
+    public Object updateById(Long id, Object object);
+    public Object removeById (Long id);
  }
