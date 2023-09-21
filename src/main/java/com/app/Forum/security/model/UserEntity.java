@@ -23,6 +23,12 @@ public class UserEntity implements UserDetails {
     @Column(unique = true)
     private String username;
     private String password;
+    /*Se utiliza fetchType en EAGER para que cada vez que se acceda o se
+    extraiga un usuario de la DB, este se traiga todos sus roles*/
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleEntity> roles;
 
     //Se obtienen los roles del usuario
