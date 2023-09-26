@@ -44,8 +44,19 @@ public class TopicService implements CrudService {
     }
 
     @Override
-    public Optional getById(Long id) {
-        return topicRepository.findById(id);
+    public Object getById(Long id) {
+        Topic topic = topicRepository.findById(id).get();
+        TopicDTO topicDTO =
+                TopicDTO.builder()
+                        .title(topic.getTitle())
+                        .curso(topic.getCurso())
+                        .author(topic.getAuthor())
+                        .creationDate(String.valueOf(topic.getCreationDate()))
+                        .message(topic.getMessage())
+                        .status(topic.getStatus())
+                        .build();
+
+        return topicDTO;
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.util.Optional;
 @Component
 public interface CrudService {
     public List getAll();
-    public Optional getById(Long id);
+    public Object getById(Long id);
     public Object create(Object object);
     public Object updateById(Long id, Object object);
     public Object removeById (Long id);

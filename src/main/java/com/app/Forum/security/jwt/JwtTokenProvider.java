@@ -2,6 +2,7 @@ package com.app.Forum.security.jwt;
 
 
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +33,7 @@ public class JwtTokenProvider {
                 //Fecha de expiración del token
                 .setExpiration(new Date(System.currentTimeMillis()+Long.parseLong(timeExpiration)))
                 //Firma del totken
-                .signWith(getKey())
+                .signWith(SignatureAlgorithm.HS256,getKey())
                 .compact();
 
     }
@@ -64,7 +65,7 @@ public class JwtTokenProvider {
         return Jwts.parserBuilder()
                 .setSigningKey(getKey())
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
     }
 
