@@ -40,7 +40,7 @@ public class SecurityConfiguration {
         //es creado dentro de esta clase
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
         //Se configura el endpoint para autenticarse
-        jwtAuthenticationFilter.setFilterProcessesUrl("/public/auth/login");
+        jwtAuthenticationFilter.setFilterProcessesUrl("/auth/login");
         return http
                 // Se deshabilita Cross-site request forgery
                 .csrf(config->config.disable())
@@ -49,6 +49,7 @@ public class SecurityConfiguration {
                 //Configuración de acceso a los endpoints
                 .authorizeHttpRequests(
                         auth-> {
+                            auth.requestMatchers("/auth/login","/auth/register").permitAll();
                             auth.anyRequest().authenticated();
                         })
                 //Filtro creado el cual es necesario para autenticar un usuario con su username y password
