@@ -9,33 +9,27 @@ import com.app.Forum.security.model.UserEntity;
 import com.app.Forum.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
-public class UserEntityImpl implements UserEntityService{
+public class UserEntityServiceImpl implements UserEntityService{
     @Autowired
     JwtTokenProvider jwtTokenProvider;
     @Autowired
-    private UserRepository userRepository;
+     UserRepository userRepository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
-    public UserEntityImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    @Override
-    public UserEntity registerUser(AuthDTO authDTO) {
-
-
+    public UserEntity registerUser( AuthDTO authDTO) {
         UserEntity userEntity =
                 UserEntity.builder()
                         //nombre de usuario
                         .username(authDTO.getUsername())
                         //password encriptada
-                        .password(authDTO.getPassword())
+                        .password(passwordEncoder.encode(authDTO.getPassword()))
                         //roles del usuario el cual se establece como predeterminado USER
                         .roles(
                              Set.of(
@@ -49,7 +43,6 @@ public class UserEntityImpl implements UserEntityService{
     }
 
     //Método para la creación de un usuario de seguridad de Spring
-    @Override
     public User createUserSecurity(UserEntity userEntity) {
         return new User(
                 userEntity.getUsername(),
@@ -61,7 +54,6 @@ public class UserEntityImpl implements UserEntityService{
                 userEntity.getAuthorities());
     }
 
-    @Override
     public void authenticate(AuthDTO authDTO) {
 
         JwtAuthenticationFilter jwtAuthenticationFilter =

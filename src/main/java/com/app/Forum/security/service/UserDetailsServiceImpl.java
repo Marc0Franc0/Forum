@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service;
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private UserEntityService userEntityService;
+    private UserEntityService userEntityService = new UserEntityServiceImpl();
 
     // Método para cargar un usuario con todos sus datos por medio de sus username
     @Override

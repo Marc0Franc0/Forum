@@ -36,7 +36,7 @@ public class UserEntity implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles
                 .stream()
-                .map(role->new SimpleGrantedAuthority("Role".concat(role.getName().name())))
+                .map(role->new SimpleGrantedAuthority("ROLE_".concat(role.getName().name())))
                 .collect(Collectors.toSet());
     }
 
