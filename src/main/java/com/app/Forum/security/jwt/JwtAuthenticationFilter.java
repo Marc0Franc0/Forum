@@ -27,6 +27,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Autowired
     JwtTokenProvider jwtTokenProvider;
     //Método el cual intenta la autenticación de un usuario
+
+
+    public JwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider) {
+        this.jwtTokenProvider = jwtTokenProvider;
+    }
+
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
                                                 HttpServletResponse response)
