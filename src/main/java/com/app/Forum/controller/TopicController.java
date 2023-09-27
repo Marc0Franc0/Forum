@@ -3,6 +3,7 @@ package com.app.Forum.controller;
 import com.app.Forum.dto.TopicDTO;
 import com.app.Forum.model.Topic;
 import com.app.Forum.service.crud.CrudService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 //Clase la cual contiene todos los endpoint correspondientes a la entidad Topic
 @RequestMapping("/topics")
 @RestController
+@SecurityRequirement(name="Bearer Authentication")
 public class TopicController {
     @Autowired
     @Qualifier("TopicService")

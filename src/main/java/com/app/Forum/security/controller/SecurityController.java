@@ -2,6 +2,7 @@ package com.app.Forum.security.controller;
 
 import com.app.Forum.security.dto.AuthDTO;
 import com.app.Forum.security.service.UserEntityServiceImpl;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("auth")
+@SecurityRequirement(name="Bearer Authentication")
 public class SecurityController {
     @Autowired
     UserEntityServiceImpl userEntityService;

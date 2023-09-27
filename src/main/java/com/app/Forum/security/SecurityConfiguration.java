@@ -49,6 +49,10 @@ public class SecurityConfiguration {
                 //Configuración de acceso a los endpoints
                 .authorizeHttpRequests(
                         auth-> {
+                            //Endpoint de documentación
+                            auth.requestMatchers
+                                    ("/swagger-ui.html","/v3/api-docs/**","/swagger-ui/**").permitAll();
+                            //Endpoints de autenticación
                             auth.requestMatchers("/auth/login","/auth/register").permitAll();
                             auth.anyRequest().authenticated();
                         })
