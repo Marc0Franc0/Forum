@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.app</groupId>
 	<artifactId>Forum</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>Forum</name>
-	<description>Demo project for Spring Boot</description>
+	<description>El proyecto tiene la posibilidad de gestionar un foro, con el objetivo de facilitar la administración de tópicos dentro del mismo y con autenticación de usuarios.</description>
 	<properties>
 		<java.version>20</java.version>
 	</properties>
